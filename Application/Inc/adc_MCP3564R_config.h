@@ -95,7 +95,7 @@
  */
 #define MCP3564_USE_HAL_SPI_INT_MODE  1
 #define MCP3564_USE_HAL_SPI_DMA_MODE  2
-#define MCP3564_HAL_SPI_MODE          MCP3564_USE_HAL_SPI_INT_MODE
+#define MCP3564_HAL_SPI_MODE          MCP3564_USE_HAL_SPI_DMA_MODE
 
 /*
  * Turn this on if we want to capture counts of each channel read so we can pause the running code and examine
