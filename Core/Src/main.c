@@ -318,7 +318,7 @@ void MPU_Config(void)
   */
   MPU_InitStruct.Number = MPU_REGION_NUMBER1;
   MPU_InitStruct.BaseAddress = 0x08000000;
-  MPU_InitStruct.LimitAddress = 0x081FDFFF;
+  MPU_InitStruct.LimitAddress = 0x081FFFFF;
   MPU_InitStruct.AttributesIndex = MPU_ATTRIBUTES_NUMBER1;
   MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
 
@@ -327,19 +327,9 @@ void MPU_Config(void)
   /** Initializes and configures the Region 2 and the memory to be protected
   */
   MPU_InitStruct.Number = MPU_REGION_NUMBER2;
-  MPU_InitStruct.BaseAddress = 0x081FE000;
-  MPU_InitStruct.LimitAddress = 0x081FFFFF;
-  MPU_InitStruct.AttributesIndex = MPU_ATTRIBUTES_NUMBER2;
+  MPU_InitStruct.BaseAddress = 0x20000000;
+  MPU_InitStruct.LimitAddress = 0x2009FFFF;
   MPU_InitStruct.AccessPermission = MPU_REGION_ALL_RW;
-  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_DISABLE;
-
-  HAL_MPU_ConfigRegion(&MPU_InitStruct);
-
-  /** Initializes and configures the Region 3 and the memory to be protected
-  */
-  MPU_InitStruct.Number = MPU_REGION_NUMBER3;
-  MPU_InitStruct.BaseAddress = 0x09016800;
-  MPU_InitStruct.LimitAddress = 0x09017FFF;
 
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
 
@@ -353,15 +343,6 @@ void MPU_Config(void)
   /** Initializes and configures the Attribute 1 and the memory to be protected
   */
   MPU_AttributesInit.Number = MPU_ATTRIBUTES_NUMBER1;
-  MPU_AttributesInit.Attributes = INNER_OUTER(MPU_WRITE_THROUGH|MPU_TRANSIENT
-                              |MPU_R_ALLOCATE);
-
-  HAL_MPU_ConfigMemoryAttributes(&MPU_AttributesInit);
-
-  /** Initializes and configures the Attribute 2 and the memory to be protected
-  */
-  MPU_AttributesInit.Number = MPU_ATTRIBUTES_NUMBER2;
-  MPU_AttributesInit.Attributes = INNER_OUTER(MPU_NOT_CACHEABLE);
 
   HAL_MPU_ConfigMemoryAttributes(&MPU_AttributesInit);
   /* Enables the MPU */
